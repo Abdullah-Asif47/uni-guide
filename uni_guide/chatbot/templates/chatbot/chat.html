@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pakistan University Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white rounded-xl shadow-md w-full max-w-2xl p-6">
+        <h1 class="text-2xl font-bold text-center text-blue-700 mb-4">
+            🎓 Pakistan University Guide
+        </h1>
+
+        <div class="h-96 overflow-y-auto border rounded-lg p-4 mb-4 space-y-3">
+            {% for msg in history %}
+            <div class="text-right">
+                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-lg inline-block">
+                    {{ msg.user }}
+                </span>
+            </div>
+            <div class="text-left">
+                <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-lg inline-block">
+                    {{ msg.bot }}
+                </span>
+            </div>
+            {% empty %}
+            <p class="text-center text-gray-400">Ask anything about Pakistani universities...</p>
+            {% endfor %}
+        </div>
+
+        <form method="POST" class="flex gap-2">
+            {% csrf_token %}
+            <input type="text" name="message" 
+                   class="flex-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                   placeholder="e.g. What merit do I need for NUST CS?"
+                   required autofocus>
+            <button type="submit"
+                    class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+                Ask
+            </button>
+        </form>
+    </div>
+</body>
+</html>
