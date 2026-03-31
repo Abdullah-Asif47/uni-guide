@@ -1,1 +1,1 @@
-web: cd uni_guide && gunicorn uni_guide.wsgi --log-file -
+web: cd uni_guide && python manage.py migrate && gunicorn uni_guide.wsgi --log-file -
